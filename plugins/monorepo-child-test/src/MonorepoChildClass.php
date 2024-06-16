@@ -1,3 +1,9 @@
 <?php
 namespace MonorepoChildTest;
-class MonorepoChildClass {}
+class MonorepoChildClass 
+{
+	public function __construct()
+	{
+		echo 'master';
+	}	
+}
