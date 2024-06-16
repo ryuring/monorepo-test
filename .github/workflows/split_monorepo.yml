@@ -28,7 +28,7 @@ jobs:
                     GITHUB_TOKEN: ${{ secrets.TOKEN }}
                 with:
                     package_directory: 'plugins/${{ matrix.package.local_path }}'
-                    repository_organization: 'baserproject'
+                    repository_organization: 'ryuring'
                     repository_name: '${{ matrix.package.split_repository }}'
                     branch: "master"
                     user_name: "ryuring"
@@ -43,7 +43,7 @@ jobs:
                 with:
                     tag: ${GITHUB_REF#refs/tags/}
                     package_directory: 'plugins/${{ matrix.package.local_path }}'
-                    repository_organization: 'baserproject'
+                    repository_organization: 'ryuring'
                     repository_name: '${{ matrix.package.split_repository }}'
                     branch: "master"
                     user_name: "ryuring"
