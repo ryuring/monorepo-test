@@ -2,9 +2,9 @@ name: 'Packages Split'
 
 on:
     push:
-#        branches:
-#            - master
-#            - dev
+        branches:
+            - main
+            - dev
         tags:
             - '*'
 jobs:
