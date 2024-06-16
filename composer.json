@@ -1,0 +1,6 @@
+{
+    "name": "ryuring/monorepo-test",
+    "require-dev": {
+        "symplify/monorepo-builder": "^11.2"
+    }
+}
