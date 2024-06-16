@@ -15,6 +15,6 @@
         }
     },
     "replace": {
-        "ryuring/monorepo-child-test": "self.version"
+        "ryuring/monorepo-child-test": "0.0.13-dev"
     }
 }

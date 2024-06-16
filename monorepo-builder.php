@@ -12,9 +12,17 @@ use Symplify\MonorepoBuilder\Release\ReleaseWorker\UpdateReplaceReleaseWorker;
 
 return static function (MBConfig $mbConfig): void {
     $mbConfig->packageDirectories([__DIR__ . '/plugins']);
-    $mbConfig->defaultBranch('dev');
+    $version = $_SERVER['argv'][2];
+    
+    if(preg_match('/^[0-9]+\.[0-9]+\.[0-9]+$/', $version)) {
+    	// 正式リリース
+    } elseif(preg_match('/^[0-9]+\.[0-9]+\.[0-9]+-(alpha|beta|rc|dev)/', $version)) {
+    	// alpha / beta / rc
+    	$mbConfig->defaultBranch('dev');
+    }
+    
     $mbConfig->workers([
-//		UpdateReplaceReleaseWorker::class,
+		UpdateReplaceReleaseWorker::class,
 //		SetCurrentMutualDependenciesReleaseWorker::class,
 //		AddTagToChangelogReleaseWorker::class,
 //		SetNextMutualDependenciesReleaseWorker::class,
