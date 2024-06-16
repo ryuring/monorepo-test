@@ -13,11 +13,13 @@ use Symplify\MonorepoBuilder\Release\ReleaseWorker\UpdateReplaceReleaseWorker;
 return static function (MBConfig $mbConfig): void {
     $mbConfig->packageDirectories([__DIR__ . '/plugins']);
     $version = $_SERVER['argv'][2];
-    
+
     if(preg_match('/^[0-9]+\.[0-9]+\.[0-9]+$/', $version)) {
-    	$mbConfig->defaultBranch('main');
-    	$mbConfig->disableDefaultWorkers();
-    	// 正式リリース
+		/**
+         * 正式リリース
+         * タグの送信とマスタの送信
+         */
+		$mbConfig->defaultBranch('main');
 		$mbConfig->workers([
 			UpdateReplaceReleaseWorker::class,
 			SetCurrentMutualDependenciesReleaseWorker::class,
@@ -26,10 +28,21 @@ return static function (MBConfig $mbConfig): void {
 			UpdateBranchAliasReleaseWorker::class,
 			PushNextDevReleaseWorker::class
 		]);
+	} elseif(preg_match('/^[0-9]+\.[0-9]+\.[0-9]+-dev/', $version)) {
+		/**
+         * 開発版
+		 * タグは送信しない
+         */
+		$mbConfig->defaultBranch('dev');
+		$mbConfig->disableDefaultWorkers();
+		$mbConfig->workers([
+			PushNextDevReleaseWorker::class
+		]);
     } elseif(preg_match('/^[0-9]+\.[0-9]+\.[0-9]+-(alpha|beta|rc|dev)/', $version)) {
-    	// alpha / beta / rc
+    	/**
+         * alpha / beta / rc
+         * タグの送信のみ
+         */
     	$mbConfig->defaultBranch('dev');
     }
-    
-
 };
