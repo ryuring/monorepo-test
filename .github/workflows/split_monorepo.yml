@@ -30,7 +30,7 @@ jobs:
                     package_directory: 'plugins/${{ matrix.package.local_path }}'
                     repository_organization: 'ryuring'
                     repository_name: '${{ matrix.package.split_repository }}'
-#                    branch: "master"
+                    branch: "dev"
                     user_name: "ryuring"
                     user_email: "ryuring55@gmail.com"
             # with tag
@@ -45,6 +45,6 @@ jobs:
                     package_directory: 'plugins/${{ matrix.package.local_path }}'
                     repository_organization: 'ryuring'
                     repository_name: '${{ matrix.package.split_repository }}'
-#                    branch: "master"
+                    branch: "dev"
                     user_name: "ryuring"
                     user_email: "ryuring55@gmail.com"
