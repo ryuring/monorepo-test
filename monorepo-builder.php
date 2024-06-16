@@ -22,7 +22,7 @@ return static function (MBConfig $mbConfig): void {
     }
     
     $mbConfig->workers([
-		UpdateReplaceReleaseWorker::class,
+//		UpdateReplaceReleaseWorker::class,
 //		SetCurrentMutualDependenciesReleaseWorker::class,
 //		AddTagToChangelogReleaseWorker::class,
 //		SetNextMutualDependenciesReleaseWorker::class,
