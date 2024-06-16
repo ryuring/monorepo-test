@@ -15,6 +15,7 @@ return static function (MBConfig $mbConfig): void {
     $version = $_SERVER['argv'][2];
     
     if(preg_match('/^[0-9]+\.[0-9]+\.[0-9]+$/', $version)) {
+    	$mbConfig->defaultBranch('main');
     	$mbConfig->disableDefaultWorkers();
     	// 正式リリース
 		$mbConfig->workers([
