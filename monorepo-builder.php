@@ -15,7 +15,10 @@ return static function (MBConfig $mbConfig): void {
     $version = $_SERVER['argv'][2];
 
     if(preg_match('/^[0-9]+\.[0-9]+\.[0-9]+$/', $version)) {
-		// 正式リリース
+		/**
+         * 正式リリース
+         * タグの送信とマスタの送信
+         */
 		$mbConfig->defaultBranch('main');
 		$mbConfig->workers([
 			UpdateReplaceReleaseWorker::class,
@@ -26,19 +29,20 @@ return static function (MBConfig $mbConfig): void {
 			PushNextDevReleaseWorker::class
 		]);
 	} elseif(preg_match('/^[0-9]+\.[0-9]+\.[0-9]+-dev/', $version)) {
-		// 開発版
+		/**
+         * 開発版
+		 * タグは送信しない
+         */
 		$mbConfig->defaultBranch('dev');
 		$mbConfig->disableDefaultWorkers();
 		$mbConfig->workers([
-//			UpdateReplaceReleaseWorker::class,
-//			SetCurrentMutualDependenciesReleaseWorker::class,
-//			AddTagToChangelogReleaseWorker::class,
-//			SetNextMutualDependenciesReleaseWorker::class,
-//			UpdateBranchAliasReleaseWorker::class,
 			PushNextDevReleaseWorker::class
 		]);
     } elseif(preg_match('/^[0-9]+\.[0-9]+\.[0-9]+-(alpha|beta|rc|dev)/', $version)) {
-    	// alpha / beta / rc
+    	/**
+         * alpha / beta / rc
+         * タグの送信のみ
+         */
     	$mbConfig->defaultBranch('dev');
     }
 
