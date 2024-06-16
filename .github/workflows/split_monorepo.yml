@@ -2,8 +2,8 @@ name: 'Packages Split'
 
 on:
     push:
-        branches:
-            - dev
+        branches-ignore:
+            - main
         tags:
             - '*'
 jobs:
@@ -13,52 +13,52 @@ jobs:
         strategy:
             fail-fast: false
             matrix:
-                package: 
-                    -
-                        local_path: 'monorepo-child-test'
-                        split_repository: 'monorepo-child-test'
+                package:
+                    - local_path: 'monorepo-child-test'
+                      split_repository: 'monorepo-child-test'
         steps:
             - uses: actions/checkout@v3
-            # no tag
-            -
-                if: "!startsWith(github.ref, 'refs/tags/')"
-                name: Monorepo Split
-                uses: "symplify/monorepo-split-github-action@v2.3.0"
-                env:
-                    GITHUB_TOKEN: ${{ secrets.TOKEN }}
-                with:
-                    package_directory: 'plugins/${{ matrix.package.local_path }}'
-                    repository_organization: 'ryuring'
-                    repository_name: '${{ matrix.package.split_repository }}'
-                    branch: ${{ github.ref_name }}
-                    user_name: "ryuring"
-                    user_email: "ryuring55@gmail.com"
-            # with tag
-            -
-                if: startsWith(github.ref, 'refs/tags/') && !contains(github.ref, '-')
-                name: Monorepo Tagged Split
-                uses: "symplify/monorepo-split-github-action@v2.3.0"
-                env:
-                    GITHUB_TOKEN: ${{ secrets.TOKEN }}
-                with:
-                    tag: ${GITHUB_REF#refs/tags/}
-                    package_directory: 'plugins/${{ matrix.package.local_path }}'
-                    repository_organization: 'ryuring'
-                    repository_name: '${{ matrix.package.split_repository }}'
-                    branch: "main"
-                    user_name: "ryuring"
-                    user_email: "ryuring55@gmail.com"
-            -
-                if: startsWith(github.ref, 'refs/tags/') && contains(github.ref, '-')
-                name: Monorepo Tagged Split
-                uses: "symplify/monorepo-split-github-action@v2.3.0"
-                env:
-                    GITHUB_TOKEN: ${{ secrets.TOKEN }}
-                with:
-                    tag: ${GITHUB_REF#refs/tags/}
-                    package_directory: 'plugins/${{ matrix.package.local_path }}'
-                    repository_organization: 'ryuring'
-                    repository_name: '${{ matrix.package.split_repository }}'
-                    branch: "dev"
-                    user_name: "ryuring"
-                    user_email: "ryuring55@gmail.com"
+
+            - name: Monorepo Tagged Split Stable
+              # タグと安定版のブランチを分割する
+              if: startsWith(github.ref, 'refs/tags/') && !contains(github.ref, '-')
+              uses: "symplify/monorepo-split-github-action@v2.3.0"
+              env:
+                GITHUB_TOKEN: ${{ secrets.TOKEN }}
+              with:
+                tag: ${GITHUB_REF#refs/tags/}
+                package_directory: 'plugins/${{ matrix.package.local_path }}'
+                repository_organization: 'ryuring'
+                repository_name: '${{ matrix.package.split_repository }}'
+                branch: "main"
+                user_name: "ryuring"
+                user_email: "ryuring55@gmail.com"
+
+            - name: Monorepo Tagged Split Alpha or Beta or Rc
+              # タグと開発版のブランチを分割する
+              if: startsWith(github.ref, 'refs/tags/') && contains(github.ref, '-')
+              uses: "symplify/monorepo-split-github-action@v2.3.0"
+              env:
+                GITHUB_TOKEN: ${{ secrets.TOKEN }}
+              with:
+                tag: ${GITHUB_REF#refs/tags/}
+                package_directory: 'plugins/${{ matrix.package.local_path }}'
+                repository_organization: 'ryuring'
+                repository_name: '${{ matrix.package.split_repository }}'
+                branch: "dev"
+                user_name: "ryuring"
+                user_email: "ryuring55@gmail.com"
+
+            - name: Monorepo Split Develop
+              # 開発版のブランチのみを分割する
+              if: !startsWith(github.ref, 'refs/tags/')
+              uses: "symplify/monorepo-split-github-action@v2.3.0"
+              env:
+                GITHUB_TOKEN: ${{ secrets.TOKEN }}
+              with:
+                package_directory: 'plugins/${{ matrix.package.local_path }}'
+                repository_organization: 'ryuring'
+                repository_name: '${{ matrix.package.split_repository }}'
+                branch: ${{ github.ref_name }}
+                user_name: "ryuring"
+                user_email: "ryuring55@gmail.com"
