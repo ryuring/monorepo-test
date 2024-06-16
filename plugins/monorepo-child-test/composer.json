@@ -1,4 +1,11 @@
 {
     "name": "ryuring/monorepo-child-test",
-    "require": {}
+    "require-dev": {
+        "phpunit/phpunit": "^11.2"
+    },
+    "autoload": {
+        "psr-4": {
+            "MonorepoChildTest\\": "src"
+        }
+    }
 }
