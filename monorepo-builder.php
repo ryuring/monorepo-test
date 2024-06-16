@@ -45,6 +45,4 @@ return static function (MBConfig $mbConfig): void {
          */
     	$mbConfig->defaultBranch('dev');
     }
-
-
 };
