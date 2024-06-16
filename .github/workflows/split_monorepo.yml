@@ -22,7 +22,7 @@ jobs:
             # no tag
             -
                 if: "!startsWith(github.ref, 'refs/tags/')"
-                name: Monorepo Split of ${{ matrix.package.split_repository }}
+                name: Monorepo Split
                 uses: "symplify/monorepo-split-github-action@v2.3.0"
                 env:
                     GITHUB_TOKEN: ${{ secrets.TOKEN }}
@@ -36,7 +36,7 @@ jobs:
             # with tag
             -
                 if: "startsWith(github.ref, 'refs/tags/')"
-                name: Monorepo Tagged Split of ${{ matrix.package.split_repository }}
+                name: Monorepo Tagged Split
                 uses: "symplify/monorepo-split-github-action@v2.3.0"
                 env:
                     GITHUB_TOKEN: ${{ secrets.TOKEN }}
