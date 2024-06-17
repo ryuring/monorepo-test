@@ -28,13 +28,14 @@ return static function (MBConfig $mbConfig): void {
 			UpdateBranchAliasReleaseWorker::class,
 			PushNextDevReleaseWorker::class
 		]);
-	} elseif(preg_match('/^[0-9]+\.[0-9]+-dev/', $version)) {
+	} elseif(preg_match('/^[0-9]+\.[0-9]+\.[0-9x]+-dev/', $version)) {
 		/**
          * 開発版
 		 * タグは送信しない
          */
 		$mbConfig->defaultBranch($version);
 		$mbConfig->disableDefaultWorkers();
+		$mbConfig->packageAliasFormat('<major>.<minor>.x-dev');
 		$mbConfig->workers([
 			PushNextDevReleaseWorker::class
 		]);
