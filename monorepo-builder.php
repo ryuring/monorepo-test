@@ -28,17 +28,17 @@ return static function (MBConfig $mbConfig): void {
 			UpdateBranchAliasReleaseWorker::class,
 			PushNextDevReleaseWorker::class
 		]);
-	} elseif(preg_match('/^[0-9]+\.[0-9]+\.[0-9]+-dev/', $version)) {
+	} elseif(preg_match('/^[0-9]+\.[0-9]+-dev/', $version)) {
 		/**
          * 開発版
 		 * タグは送信しない
          */
-		$mbConfig->defaultBranch('dev');
+//		$mbConfig->defaultBranch('dev');
 		$mbConfig->disableDefaultWorkers();
 		$mbConfig->workers([
 			PushNextDevReleaseWorker::class
 		]);
-    } elseif(preg_match('/^[0-9]+\.[0-9]+\.[0-9]+-(alpha|beta|rc|dev)/', $version)) {
+    } elseif(preg_match('/^[0-9]+\.[0-9]+\.[0-9]+-(alpha|beta|rc)/', $version)) {
     	/**
          * alpha / beta / rc
          * タグの送信のみ
