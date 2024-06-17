@@ -33,7 +33,7 @@ return static function (MBConfig $mbConfig): void {
          * 開発版
 		 * タグは送信しない
          */
-//		$mbConfig->defaultBranch('dev');
+		$mbConfig->defaultBranch($version);
 		$mbConfig->disableDefaultWorkers();
 		$mbConfig->workers([
 			PushNextDevReleaseWorker::class
