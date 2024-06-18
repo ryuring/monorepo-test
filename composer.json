@@ -1,12 +1,12 @@
 {
     "name": "ryuring/monorepo-test",
     "require": {
-        "php": "^7.2",
+        "php": "^7.4",
         "symfony/dependency-injection": "^5.0",
         "symfony/http-kernel": "^5.0"
     },
     "require-dev": {
-        "phpunit/phpunit": "^11.2",
+        "phpunit/phpunit": "^9.2",
         "symplify/monorepo-builder": "^11.2"
     },
     "autoload": {
