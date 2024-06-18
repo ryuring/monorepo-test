@@ -3,16 +3,17 @@
 開発版を composer でインストールするためのテストリポジトリです。
 
 ## 開発版のリリース
-バージョンにサフィックスで -dev を付けると開発ブランチだけが更新されます。
+1.0.x のような開発バージョンのブランチ名を作成し push します。 
 
 ```bash
-bin/vendor/monorepo-buulder release 1.0.0-dev
+git checkout -b 1.0.x
+git push origin 1.0.x
 ```
 
 取得する際は、ブランチから取得する前提として、次のようにします。
 
 ```bash
-composer require monorepo/monorepo-child-test:dev-dev
+composer require monorepo/monorepo-child-test:1.0.x
 ```
 
 ## アルファ、ベータ、RC版のリリース
