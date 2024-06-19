@@ -14,7 +14,6 @@ return static function (MBConfig $mbConfig): void {
     $mbConfig->packageDirectories([__DIR__ . '/plugins']);
     $version = $_SERVER['argv'][2];
     if(!$version) return;
-
     if(preg_match('/^[0-9]+\.[0-9]+\.[0-9]+$/', $version)) {
 		/**
          * 正式リリース
@@ -27,17 +26,6 @@ return static function (MBConfig $mbConfig): void {
 			AddTagToChangelogReleaseWorker::class,
 			SetNextMutualDependenciesReleaseWorker::class,
 			UpdateBranchAliasReleaseWorker::class,
-			PushNextDevReleaseWorker::class
-		]);
-	} elseif(preg_match('/^[0-9]+\.[0-9]+\.[0-9x]+-dev/', $version)) {
-		/**
-         * 開発版
-		 * タグは送信しない
-         */
-		$mbConfig->defaultBranch($version);
-		$mbConfig->disableDefaultWorkers();
-		$mbConfig->packageAliasFormat('<major>.<minor>.x-dev');
-		$mbConfig->workers([
 			PushNextDevReleaseWorker::class
 		]);
     } elseif(preg_match('/^[0-9]+\.[0-9]+\.[0-9]+-(alpha|beta|rc)/', $version)) {
