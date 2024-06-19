@@ -20,13 +20,14 @@ return static function (MBConfig $mbConfig): void {
          * タグの送信とマスタの送信
          */
 		$mbConfig->defaultBranch('main');
+		$mbConfig->packageAliasFormat('<major>.<minor>.x-dev');
 		$mbConfig->workers([
 			UpdateReplaceReleaseWorker::class,
 			SetCurrentMutualDependenciesReleaseWorker::class,
 			AddTagToChangelogReleaseWorker::class,
 			SetNextMutualDependenciesReleaseWorker::class,
 			UpdateBranchAliasReleaseWorker::class,
-			PushNextDevReleaseWorker::class
+			PushNextDevReleaseWorker::class,
 		]);
     } elseif(preg_match('/^[0-9]+\.[0-9]+\.[0-9]+-(alpha|beta|rc)/', $version)) {
     	/**
