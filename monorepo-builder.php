@@ -25,7 +25,7 @@ return static function (MBConfig $mbConfig): void {
 			UpdateReplaceReleaseWorker::class,
 			SetCurrentMutualDependenciesReleaseWorker::class,
 			AddTagToChangelogReleaseWorker::class,
-			SetNextMutualDependenciesReleaseWorker::class,
+//			SetNextMutualDependenciesReleaseWorker::class,
 			UpdateBranchAliasReleaseWorker::class,
 //			PushNextDevReleaseWorker::class,
 		]);
