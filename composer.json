@@ -16,7 +16,7 @@
         }
     },
     "replace": {
-        "ryuring/monorepo-child-test": "0.0.44",
-        "ryuring/monorepo-grandchild-test": "0.0.44"
+        "ryuring/monorepo-child-test": "0.0.45",
+        "ryuring/monorepo-grandchild-test": "0.0.45"
     }
 }

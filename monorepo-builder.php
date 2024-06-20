@@ -23,8 +23,8 @@ return static function (MBConfig $mbConfig): void {
 		$mbConfig->packageAliasFormat('<major>.<minor>.x-dev');
 		$mbConfig->workers([
 			UpdateReplaceReleaseWorker::class,
-//			SetCurrentMutualDependenciesReleaseWorker::class,
-			AddTagToChangelogReleaseWorker::class,
+			SetCurrentMutualDependenciesReleaseWorker::class,
+//			AddTagToChangelogReleaseWorker::class,
 //			SetNextMutualDependenciesReleaseWorker::class,
 //			UpdateBranchAliasReleaseWorker::class,
 //			PushNextDevReleaseWorker::class,
