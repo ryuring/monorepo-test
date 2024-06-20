@@ -20,7 +20,6 @@ return static function (MBConfig $mbConfig): void {
          * タグの送信とマスタの送信
          */
 		$mbConfig->defaultBranch('main');
-		$mbConfig->packageAliasFormat('<major>.<minor>.x-dev');
 		$mbConfig->workers([
 			UpdateReplaceReleaseWorker::class,
 			SetCurrentMutualDependenciesReleaseWorker::class,
