@@ -11,10 +11,12 @@
     },
     "autoload": {
         "psr-4": {
-            "MonorepoChildTest\\": "plugins/monorepo-child-test/src"
+            "MonorepoChildTest\\": "plugins/monorepo-child-test/src",
+            "MonorepoGrandchildTest\\": "plugins/monorepo-grandchild-test/src/"
         }
     },
     "replace": {
-        "ryuring/monorepo-child-test": "0.0.24"
+        "ryuring/monorepo-child-test": "0.0.24",
+        "ryuring/monorepo-grandchild-test": "self.version"
     }
 }
