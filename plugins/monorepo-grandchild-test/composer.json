@@ -4,6 +4,5 @@
         "psr-4": {
             "MonorepoGrandchildTest\\": "src/"
         }
-    },
-    "require": {}
+    }
 }
