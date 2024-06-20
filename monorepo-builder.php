@@ -14,7 +14,7 @@ return static function (MBConfig $mbConfig): void {
     $mbConfig->packageDirectories([__DIR__ . '/plugins']);
     $version = $_SERVER['argv'][2];
     if(!$version) return;
-    if(preg_match('/^([0-9]+\.[0-9]+\.[0-9]+|patch)$/', $version)) {
+    if(preg_match('/^(([0-9]+)\.([0-9]+)\.([0-9]+)|patch)$/', $version, $matches)) {
 		/**
          * 正式リリース
          * タグの送信とマスタの送信
@@ -24,11 +24,13 @@ return static function (MBConfig $mbConfig): void {
 		$mbConfig->workers([
 			UpdateReplaceReleaseWorker::class,
 			SetCurrentMutualDependenciesReleaseWorker::class,
-//			AddTagToChangelogReleaseWorker::class,
-//			SetNextMutualDependenciesReleaseWorker::class,
-//			UpdateBranchAliasReleaseWorker::class,
-//			PushNextDevReleaseWorker::class,
 		]);
+        if(!empty($matches[3]) && $matches !== "0") {
+            $mbConfig->workers([
+                SetNextMutualDependenciesReleaseWorker::class,
+                PushNextDevReleaseWorker::class,
+            ]);
+        }
     } elseif(preg_match('/^[0-9]+\.[0-9]+\.[0-9]+-(alpha|beta|rc)/', $version)) {
     	/**
          * alpha / beta / rc
