@@ -17,6 +17,8 @@ jobs:
         package:
           - local_path: 'monorepo-child-test'
             split_repository: 'monorepo-child-test'
+          - local_path: 'monorepo-grandchild-test'
+            split_repository: 'monorepo-grandchild-test'
 
     steps:
       - uses: actions/checkout@v3
