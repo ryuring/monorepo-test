@@ -1,0 +1,9 @@
+{
+    "name": "ryuring/monorepo-grandchild-test",
+    "autoload": {
+        "psr-4": {
+            "Ryuring\\MonorepoGrandchildTest\\": "src/"
+        }
+    },
+    "require": {}
+}
