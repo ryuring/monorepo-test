@@ -1,5 +1,5 @@
 <?php
-namespace MonorepoGrandchildTest;:
+namespace MonorepoGrandchildTest;
 class MonorepoGrandchildClass {
 
 }
