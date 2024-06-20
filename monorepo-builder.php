@@ -27,7 +27,7 @@ return static function (MBConfig $mbConfig): void {
 			AddTagToChangelogReleaseWorker::class,
 			SetNextMutualDependenciesReleaseWorker::class,
 			UpdateBranchAliasReleaseWorker::class,
-			PushNextDevReleaseWorker::class,
+//			PushNextDevReleaseWorker::class,
 		]);
     } elseif(preg_match('/^[0-9]+\.[0-9]+\.[0-9]+-(alpha|beta|rc)/', $version)) {
     	/**
