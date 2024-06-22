@@ -26,6 +26,7 @@ composer require monorepo/monorepo-child-test:1.0.x-dev
 ```
 
 ### 全てのパッケージで開発版を許容する
+多くのライブラリを読み込んでいる場合はおすすめできない。
 ```yaml
 // composer.json に追記
 {
@@ -34,7 +35,7 @@ composer require monorepo/monorepo-child-test:1.0.x-dev
 }
 ```
 ```bash
-// 開発版を明示的に指定
+// 開発版を明示的に指定しなくてもよい
 composer require monorepo/monorepo-child-test:1.0.x
 ```
 
